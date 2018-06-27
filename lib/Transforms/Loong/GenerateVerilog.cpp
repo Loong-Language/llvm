@@ -1,4 +1,4 @@
-//===- GenVerilog.cpp - Generate Verilog source code from Loong -----------===//
+//===- GenerateVerilog.cpp - Generate Verilog source code from Loong ------===//
 //
 //                     The LLVM Compiler Infrastructure
 //
@@ -7,7 +7,10 @@
 //
 //===----------------------------------------------------------------------===//
 //
-// This file implements the Generate Verilog source code pass by Loongson.
+// This file implements Loong -> Verilog source-to-source transform pass power
+// by Loongson.
+//
+// The Verilog resource is available from http://www.verilog.com/
 //
 //===----------------------------------------------------------------------===//
 
@@ -18,10 +21,10 @@
 
 using namespace llvm;
 
-struct GenVerilog : public ModulePass {
+struct GenerateVerilog : public ModulePass {
   static char ID;
 
-  GenVerilog() : ModulePass(ID) {}
+  GenerateVerilog() : ModulePass(ID) {}
 
   bool runOnModule(Module &M);
 
@@ -31,11 +34,11 @@ struct GenVerilog : public ModulePass {
   }
 };
 
-char GenVerilog::ID = 0;
-static RegisterPass<GenVerilog> X("generate-verilog",
-                                  "Generate Verilog source code");
+char GenerateVerilog::ID = 0;
+static RegisterPass<GenerateVerilog> X("generate-verilog",
+                                       "Generate Verilog source code");
 
-bool GenVerilog::runOnModule(Module &M) {
+bool GenerateVerilog::runOnModule(Module &M) {
   CallGraph &CG = getAnalysis<CallGraphWrapperPass>().getCallGraph();
   for (scc_iterator<CallGraph *> sccIb = scc_begin(&CG); !sccIb.isAtEnd();
        ++sccIb) {
