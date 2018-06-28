@@ -293,7 +293,6 @@ class GCCBuiltin<string name> {
 
 // Loong builtins.
 def int___assign : Intrinsic<[], [llvm_anyint_ty], [], "llvm.__assign">;
-def int___always : Intrinsic<[], [llvm_anyint_ty], [], "llvm.__always">;
 def int___nonblock_assign : Intrinsic<[], [llvm_anyint_ty], [],
                             "llvm.__nonblock_assign">;
 def int___block_assign : Intrinsic<[], [llvm_anyint_ty], [],
