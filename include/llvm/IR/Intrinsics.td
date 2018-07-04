@@ -297,6 +297,7 @@ def int___nonblock_assign : Intrinsic<[], [llvm_i1_ty], [],
                             "llvm.__nonblock_assign">;
 def int___block_assign : Intrinsic<[], [llvm_i1_ty], [],
                             "llvm.__block_assign">;
+def int___delay : Intrinsic<[], [llvm_anyint_ty], [], "llvm.__delay">;
 
 class MSBuiltin<string name> {
   string MSBuiltinName = name;
